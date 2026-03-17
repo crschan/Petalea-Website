@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petalea | Exquisite Fuzzy Wire Bouquets</title>
+    <meta name="description"
+        content="Discover handcrafted, timeless fuzzy wire bouquets from Petalea. Celebrate moments with customizable, everlasting blooms.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <header id="header">
+        <a href="#" class="brand-logo">Petalea <span>.</span></a>
+        <div class="mobile-menu-btn" id="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+        <nav>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#shop">Shop</a></li>
+                <li><a href="#custom">Custom Orders</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><button class="btn btn-primary order-action-btn"
+                        style="padding: 0.6rem 1.5rem; color: white; border: none; font-family: 'Outfit', sans-serif; cursor: pointer;">Order
+                        Now</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <span class="hero-subtitle">Handcrafted Everlasting Blooms</span>
+                <h1 class="hero-title">Timeless <br><span>Fuzzy Wire</span><br> Bouquets</h1>
+                <p class="hero-desc">Elevate your home and special moments with intricately handcrafted fuzzy wire
+                    flowers. Beautifully designed, completely customizable, and made to last forever.</p>
+                <div class="hero-actions">
+                    <a href="#shop" class="btn btn-primary">Shop Collection</a>
+                    <a href="#custom" class="btn btn-outline">Request Custom</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-img-wrapper">
+                    <img src="assets/hero_bouquet_1771732940523.png"
+                        alt="A beautiful handcrafted fuzzy wire bouquet by Petalea" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Showcase -->
+        <section class="section" id="shop">
+            <div class="section-header">
+                <span class="section-subtitle">Our Collection</span>
+                <h2 class="section-title">Designed for Your Needs</h2>
+                <p style="color: var(--color-text-secondary); max-width: 600px; margin: 0 auto;">Browse our elegant
+                    pre-designed bouquets and single stems, entirely handcrafted from high-quality fuzzy wires.</p>
+            </div>
+            <div class="products-grid" id="products-grid">
+                <!-- Products loaded dynamically via JS -->
+            </div>
+        </section>
+
+        <!-- Custom Orders -->
+        <section class="custom-order" id="custom">
+            <h2>Let's Build It Together</h2>
+            <p>Looking for specific colors, a unique flower type, or a large arrangement for an event? We specialize in
+                tailoring our fuzzy wire bouquets to meet your exact needs.</p>
+
+            <form class="custom-form"
+                onsubmit="event.preventDefault(); alert('We have received your custom request!');">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="hello@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="details">Bouquet Details & Preferences</label>
+                    <textarea id="details"
+                        placeholder="Tell us about the colors, flowers, and size you are looking for..."
+                        required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Custom Request</button>
+            </form>
+        </section>
+
+        <!-- About Us -->
+        <section class="section about-section" id="about">
+            <div class="about-image">
+                <img src="assets/product_sunflower_1771732964722.png" alt="Crafting a fuzzy wire flower" loading="lazy"
+                    style="transform: scaleX(-1);">
+            </div>
+            <div class="about-content">
+                <span class="section-subtitle">The Story of Petalea</span>
+                <h2 class="section-title" style="margin-top: 1rem; margin-bottom: 2rem;">Crafting Memories <br>Wire by
+                    Wire</h2>
+                <p class="hero-desc">At Petalea.ph, we believe in the beauty of things that last. Founded out of a
+                    passion for intricate handcrafting, we turn simple fuzzy wires into elegant, lifelike floral
+                    masterpieces.</p>
+                <p class="hero-desc">Each petal is carefully shaped and bloomed by hand, ensuring that no two bouquets
+                    are exactly alike. Whether it’s a gift for a loved one or a centerpiece for your home, Petalea
+                    blooms bring warmth and joy that simply never fades.</p>
+                <a href="#contact" class="btn btn-outline" style="margin-top: 1rem;">Get in Touch</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-col">
+                <a href="#" class="brand-logo" style="color: white;">Petalea <span
+                        style="color: var(--color-accent)">.</span></a>
+                <p style="margin-top: 1.5rem; max-width: 300px;">Everlasting fuzzy wire bouquets handcrafted with love
+                    and endless creativity in the Philippines.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-col" style="padding-top: 1rem;">
+                <h3>Quick Links</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 0.8rem;"><a href="#home"
+                            style="color: #a9a5a1; text-decoration: none;">Home</a></li>
+                    <li style="margin-bottom: 0.8rem;"><a href="#shop"
+                            style="color: #a9a5a1; text-decoration: none;">Shop Collection</a></li>
+                    <li style="margin-bottom: 0.8rem;"><a href="#custom"
+                            style="color: #a9a5a1; text-decoration: none;">Custom Orders</a></li>
+                    <li style="margin-bottom: 0.8rem;"><a href="#about"
+                            style="color: #a9a5a1; text-decoration: none;">About Us</a></li>
+                    <li><a href="admin.html" style="color: #a9a5a1; text-decoration: none;"><i class="fas fa-lock" style="font-size:0.8rem;margin-right:4px;"></i> Admin Portal</a></li>
+                </ul>
+            </div>
+            <div class="footer-col" style="padding-top: 1rem;">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-envelope" style="margin-right: 10px; color: var(--color-accent);"></i>
+                    hello@petalea.ph</p>
+                <p><i class="fas fa-phone-alt" style="margin-right: 10px; color: var(--color-accent);"></i> +63 900 123
+                    4567</p>
+                <p><i class="fas fa-map-marker-alt" style="margin-right: 10px; color: var(--color-accent);"></i> Manila,
+                    Philippines</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Petalea.ph. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Order Modal -->
+    <div id="order-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 style="font-family: 'Outfit', sans-serif; margin-bottom: 10px;">How would you like to order?</h2>
+            <p style="color: var(--color-text-secondary); margin-bottom: 25px;">Choose your preferred method to complete
+                your order process.</p>
+            <div class="modal-options">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdjG-LmhBUfMi1PeHrRiDNmhkUIZolujdFsrRNIQB7PlQ_cLA/viewform?usp=publish-editor"
+                    target="_blank" class="btn btn-primary modal-btn">
+                    <i class="fab fa-wpforms" style="margin-right: 8px;"></i> Fill up Google Form
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=61586161875931" target="_blank"
+                    class="btn btn-outline modal-btn">
+                    <i class="fab fa-facebook-messenger" style="margin-right: 8px;"></i> Message on Messenger
+                </a>
+                <a href="https://www.instagram.com/petaleaa.ph" target="_blank" class="btn btn-outline modal-btn">
+                    <i class="fab fa-instagram" style="margin-right: 8px;"></i> Message on Instagram
+                </a>
+                <a href="#" id="direct-order-btn" class="btn btn-outline modal-btn">
+                    <i class="fas fa-shopping-bag" style="margin-right: 8px;"></i> Order Directly on Website
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="modal">
+        <div class="modal-content" style="max-width: 400px; text-align: left; padding: 2.5rem;">
+            <span class="close-checkout close-modal">&times;</span>
+            <h2 style="font-family: 'Outfit', sans-serif; margin-bottom: 20px;">Complete Order</h2>
+            <form id="checkout-form">
+                <input type="hidden" id="checkout-product-id">
+                <input type="hidden" id="checkout-product-price">
+                <input type="hidden" id="checkout-product-name">
+                <input type="hidden" id="checkout-product-image">
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label>Product Selected</label>
+                    <p id="checkout-product-display" style="font-weight: 600; color: var(--color-accent);">None</p>
+                </div>
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label>Full Name</label>
+                    <input type="text" id="checkout-name" required placeholder="John Doe">
+                </div>
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label>Email Address</label>
+                    <input type="email" id="checkout-email" required placeholder="john@example.com">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Confirm & Place Order</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
