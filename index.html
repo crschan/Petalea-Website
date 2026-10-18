@@ -7,6 +7,7 @@
     <title>Petalea | Exquisite Fuzzy Wire Bouquets</title>
     <meta name="description"
         content="Discover handcrafted, timeless fuzzy wire bouquets from Petalea. Celebrate moments with customizable, everlasting blooms.">
+    <meta name="keywords" content="Handmade Flowers Philippines, Fuzzy Wire Art Manila, Custom Bouquets, Everlasting Flowers, Petalea">
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
@@ -23,6 +24,7 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#shop">Shop</a></li>
                 <li><a href="#custom">Custom Orders</a></li>
+                <li><a href="#testimonials">Customer Stories</a></li>
                 <li><a href="#about">About Us</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><button class="btn btn-primary order-action-btn"
@@ -72,24 +74,84 @@
             <p>Looking for specific colors, a unique flower type, or a large arrangement for an event? We specialize in
                 tailoring our fuzzy wire bouquets to meet your exact needs.</p>
 
-            <form class="custom-form"
-                onsubmit="event.preventDefault(); alert('We have received your custom request!');">
+            <form class="custom-form" id="custom-order-form">
+                <div class="form-group">
+                    <fieldset class="flower-picker">
+                        <legend>Choose your flowers</legend>
+                        <p class="flower-picker-note">Select the flower types you would like in your bouquet. Prices are per flower; we will confirm the final bouquet price with you.</p>
+                        <div class="flower-grid" id="custom-flowers-grid" aria-live="polite">
+                            <p class="flower-picker-message">Loading available flowers…</p>
+                        </div>
+                    </fieldset>
+                </div>
                 <div class="form-group">
                     <label for="name">Your Name</label>
-                    <input type="text" id="name" placeholder="Enter your full name" required>
+                    <input type="text" id="name" maxlength="120" placeholder="Enter your full name" required>
                 </div>
                 <div class="form-group">
                     <label for="email">Email Address</label>
-                    <input type="email" id="email" placeholder="hello@example.com" required>
+                    <input type="email" id="email" maxlength="254" placeholder="hello@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="custom-phone">Phone Number (PH)</label>
+                    <input type="tel" id="custom-phone" required maxlength="13" placeholder="09xxxxxxxxx or +639xxxxxxxxx" pattern="^(09|\+639)\d{9}$">
+                </div>
+                <div class="form-group">
+                    <label for="custom-facebook-name">Facebook Name</label>
+                    <input type="text" id="custom-facebook-name" maxlength="120" required placeholder="Name shown on Facebook">
+                </div>
+                <div class="form-group">
+                    <label for="custom-payment-method">Preferred Mode of Payment</label>
+                    <select id="custom-payment-method" class="form-select" required>
+                        <option value="">Choose a payment method</option>
+                        <option value="Cash">Cash</option>
+                        <option value="GCash">GCash</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="custom-fulfillment">Pickup or Delivery</label>
+                    <select id="custom-fulfillment" class="form-select fulfillment-select" required>
+                        <option value="">Choose pickup or delivery</option>
+                        <option value="Pickup">Pickup</option>
+                        <option value="Delivery">Delivery</option>
+                    </select>
+                </div>
+                <div class="form-group address-group" id="custom-address-group" hidden>
+                    <label for="custom-delivery-address">Delivery Address</label>
+                    <textarea id="custom-delivery-address" maxlength="500" placeholder="Enter your complete delivery address" disabled></textarea>
+                    <small class="delivery-note">A delivery fee will be quoted separately after we review your address. We’ll confirm the final amount and payment details before the order is finalized.</small>
+                </div>
+                <div class="form-group">
+                    <label>Primary Color Preference</label>
+                    <div class="color-options">
+                        <label class="color-radio" title="Pastel Pink"><input type="radio" name="color" value="Pastel Pink" aria-label="Pastel Pink"><span style="background-color: #ffd1dc;"></span></label>
+                        <label class="color-radio" title="Deep Red"><input type="radio" name="color" value="Deep Red" aria-label="Deep Red"><span style="background-color: #8b0000;"></span></label>
+                        <label class="color-radio" title="Golden Yellow"><input type="radio" name="color" value="Golden Yellow" aria-label="Golden Yellow"><span style="background-color: #ffdf00;"></span></label>
+                        <label class="color-radio" title="Lavender"><input type="radio" name="color" value="Lavender" aria-label="Lavender"><span style="background-color: #e6e6fa;"></span></label>
+                        <label class="color-radio" title="White"><input type="radio" name="color" value="White" aria-label="White" checked><span style="background-color: #ffffff; border: 1px solid #ccc;"></span></label>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="details">Bouquet Details & Preferences</label>
                     <textarea id="details"
-                        placeholder="Tell us about the colors, flowers, and size you are looking for..."
+                        placeholder="Tell us the quantities you want, bouquet size, wrapping, or any other preferences..."
+                        maxlength="2000"
                         required></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Custom Request</button>
+                <p id="custom-form-status" class="form-status" role="status" aria-live="polite" hidden></p>
             </form>
+        </section>
+
+        <section class="section testimonials-section" id="testimonials">
+            <div class="section-header">
+                <span class="section-subtitle">Shared with permission</span>
+                <h2 class="section-title">Stories from Our Customers</h2>
+                <p class="testimonials-intro">A few kind words and memories from customers who have welcomed Petalea blooms into their lives.</p>
+            </div>
+            <div class="testimonials-grid" id="testimonials-grid" aria-live="polite">
+                <p class="testimonial-message">Loading customer stories…</p>
+            </div>
         </section>
 
         <!-- About Us -->
@@ -136,9 +198,10 @@
                             style="color: #a9a5a1; text-decoration: none;">Shop Collection</a></li>
                     <li style="margin-bottom: 0.8rem;"><a href="#custom"
                             style="color: #a9a5a1; text-decoration: none;">Custom Orders</a></li>
+                    <li style="margin-bottom: 0.8rem;"><a href="#testimonials"
+                            style="color: #a9a5a1; text-decoration: none;">Customer Stories</a></li>
                     <li style="margin-bottom: 0.8rem;"><a href="#about"
                             style="color: #a9a5a1; text-decoration: none;">About Us</a></li>
-                    <li><a href="admin.html" style="color: #a9a5a1; text-decoration: none;"><i class="fas fa-lock" style="font-size:0.8rem;margin-right:4px;"></i> Admin Portal</a></li>
                 </ul>
             </div>
             <div class="footer-col" style="padding-top: 1rem;">
@@ -197,17 +260,52 @@
                     <p id="checkout-product-display" style="font-weight: 600; color: var(--color-accent);">None</p>
                 </div>
                 <div class="form-group" style="margin-bottom: 15px;">
-                    <label>Full Name</label>
-                    <input type="text" id="checkout-name" required placeholder="John Doe">
+                    <label for="checkout-name">Full Name</label>
+                    <input type="text" id="checkout-name" maxlength="120" required placeholder="John Doe">
                 </div>
                 <div class="form-group" style="margin-bottom: 15px;">
-                    <label>Email Address</label>
-                    <input type="email" id="checkout-email" required placeholder="john@example.com">
+                    <label for="checkout-email">Email Address</label>
+                    <input type="email" id="checkout-email" maxlength="254" required placeholder="john@example.com">
                 </div>
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label for="checkout-phone">Phone Number (PH)</label>
+                    <input type="tel" id="checkout-phone" maxlength="13" required placeholder="09xxxxxxxxx or +639xxxxxxxxx" pattern="^(09|\+639)\d{9}$">
+                    <small style="color: var(--color-text-secondary); font-size: 0.8rem;">Format: 09123456789 or +639123456789</small>
+                </div>
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label for="checkout-facebook-name">Facebook Name</label>
+                    <input type="text" id="checkout-facebook-name" maxlength="120" required placeholder="Name shown on Facebook">
+                </div>
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label for="checkout-payment-method">Mode of Payment</label>
+                    <select id="checkout-payment-method" class="form-select" required>
+                        <option value="">Choose a payment method</option>
+                        <option value="Cash">Cash</option>
+                        <option value="GCash">GCash</option>
+                    </select>
+                </div>
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label for="checkout-fulfillment">Pickup or Delivery</label>
+                    <select id="checkout-fulfillment" class="form-select fulfillment-select" required>
+                        <option value="">Choose pickup or delivery</option>
+                        <option value="Pickup">Pickup</option>
+                        <option value="Delivery">Delivery</option>
+                    </select>
+                </div>
+                <div class="form-group address-group" id="checkout-address-group" style="margin-bottom: 15px;" hidden>
+                    <label for="checkout-delivery-address">Delivery Address</label>
+                    <textarea id="checkout-delivery-address" class="form-textarea" maxlength="500" placeholder="Enter your complete delivery address" disabled></textarea>
+                    <small class="delivery-note">Delivery has an additional fee. We’ll confirm the fee with you after reviewing your address.</small>
+                </div>
+                <p class="checkout-price-note">The bouquet price does not include delivery. We’ll review your address and confirm the delivery fee and payment details before finalizing the order.</p>
                 <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Confirm & Place Order</button>
             </form>
         </div>
     </div>
+
+    <!-- Firebase Compat SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 
     <script src="data.js"></script>
     <script src="script.js"></script>

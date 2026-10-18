@@ -308,6 +308,62 @@ header.scrolled {
     margin-bottom: 1rem;
 }
 
+/* Customer Stories */
+.testimonials-section {
+    background: #fffdfb;
+}
+
+.testimonials-intro {
+    max-width: 620px;
+    margin: 0 auto;
+    color: var(--color-text-secondary);
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.testimonial-card {
+    overflow: hidden;
+    border-radius: var(--border-radius-md);
+    background: white;
+    box-shadow: var(--shadow-soft);
+}
+
+.testimonial-image {
+    display: block;
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+}
+
+.testimonial-card blockquote {
+    padding: 1.5rem 1.5rem 0.75rem;
+    color: var(--color-text-secondary);
+    font-size: 1.05rem;
+    font-style: italic;
+    overflow-wrap: anywhere;
+}
+
+.testimonial-attribution {
+    margin: 0;
+    padding: 0 1.5rem 1.5rem;
+    color: var(--color-text-primary);
+    font-weight: 600;
+}
+
+.testimonial-message {
+    grid-column: 1 / -1;
+    color: var(--color-text-secondary);
+    text-align: center;
+}
+
+.testimonial-message.is-error {
+    color: #b42318;
+}
+
 /* Custom Order Section */
 .custom-order {
     background-color: var(--color-accent-light);
@@ -341,6 +397,98 @@ header.scrolled {
     max-width: 600px;
 }
 
+.custom-form .form-status {
+    margin: 1rem 0 0;
+    color: #216e39;
+    font-size: 0.95rem;
+}
+
+.custom-form .form-status.is-error {
+    color: #b42318;
+}
+
+.flower-picker {
+    min-width: 0;
+    border: 0;
+    text-align: left;
+}
+
+.flower-picker legend {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.flower-picker-note,
+.flower-picker-message {
+    margin-bottom: 1rem;
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+}
+
+.flower-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+    gap: 0.85rem;
+}
+
+.flower-choice {
+    position: relative;
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid #e9e2de;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.flower-choice:has(input:checked) {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 2px rgba(216, 154, 158, 0.2);
+}
+
+.flower-choice input {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    z-index: 1;
+    width: 1.15rem;
+    height: 1.15rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    accent-color: var(--color-accent-hover);
+    background: white;
+}
+
+.flower-choice input:focus-visible {
+    outline: 2px solid var(--color-accent-hover);
+    outline-offset: 2px;
+}
+
+.flower-choice img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+}
+
+.flower-choice-info {
+    display: grid;
+    gap: 0.2rem;
+    padding: 0.65rem 0.75rem;
+}
+
+.flower-choice-price {
+    color: var(--color-accent-hover);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.flower-picker-message.is-error {
+    color: #b42318;
+}
+
 .form-group {
     margin-bottom: 1.5rem;
     text-align: left;
@@ -354,7 +502,10 @@ header.scrolled {
 }
 
 .form-group input,
-.form-group textarea {
+.form-group textarea,
+.form-group select,
+.form-select,
+.form-textarea {
     width: 100%;
     padding: 1rem;
     border: 1px solid #e0dcd5;
@@ -366,7 +517,10 @@ header.scrolled {
 }
 
 .form-group input:focus,
-.form-group textarea:focus {
+.form-group textarea:focus,
+.form-group select:focus,
+.form-select:focus,
+.form-textarea:focus {
     outline: none;
     border-color: var(--color-accent);
     background-color: white;
@@ -375,6 +529,31 @@ header.scrolled {
 .form-group textarea {
     resize: vertical;
     min-height: 120px;
+}
+
+.form-group .flower-choice input {
+    width: 1.15rem;
+    height: 1.15rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: white;
+}
+
+.address-group[hidden] {
+    display: none;
+}
+
+.delivery-note,
+.checkout-price-note {
+    display: block;
+    margin-top: 0.5rem;
+    color: var(--color-text-secondary);
+    font-size: 0.85rem;
+}
+
+.checkout-price-note {
+    margin-bottom: 0.5rem;
 }
 
 /* About Us */
@@ -427,6 +606,48 @@ footer {
     color: #a9a5a1;
     margin-bottom: 1rem;
 }
+
+/* Color Options for Custom Form */
+.color-options {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+}
+.color-radio {
+    cursor: pointer;
+    position: relative;
+}
+.color-radio input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+.color-radio span {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.color-radio input:checked ~ span {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 2px white, 0 0 0 4px var(--color-accent);
+}
+
+/* Skeleton Loading State */
+.skeleton {
+    animation: shimmerskeleton 1.5s infinite linear;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+}
+@keyframes shimmerskeleton {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+.skeleton-img { height: 250px; width: 100%; border-radius: 8px 8px 0 0; }
+.skeleton-text { height: 20px; width: 80%; margin: 10px 0; border-radius: 4px; }
+.skeleton-price { height: 20px; width: 40%; margin-bottom: 15px; border-radius: 4px; }
+.skeleton-btn { height: 40px; width: 100%; border-radius: 4px; }
 
 .social-links {
     display: flex;

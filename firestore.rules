@@ -1,0 +1,167 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null && request.auth.token.admin == true;
+    }
+
+    match /products/{productId} {
+      allow read: if true;
+      allow create, update: if isAdmin()
+        && request.resource.data.keys().hasAll(['name', 'price', 'image'])
+        && request.resource.data.keys().hasOnly(['name', 'price', 'image'])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.name.size() <= 120
+        && (request.resource.data.price is int || request.resource.data.price is float)
+        && request.resource.data.price > 0
+        && request.resource.data.image is string
+        && request.resource.data.image.size() > 0
+        && request.resource.data.image.size() <= 2048;
+      allow delete: if isAdmin();
+    }
+
+    match /customFlowers/{flowerId} {
+      allow read: if true;
+      allow create, update: if isAdmin()
+        && request.resource.data.keys().hasAll(['name', 'price', 'image'])
+        && request.resource.data.keys().hasOnly(['name', 'price', 'image'])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.name.size() <= 120
+        && (request.resource.data.price is int || request.resource.data.price is float)
+        && request.resource.data.price > 0
+        && request.resource.data.image is string
+        && request.resource.data.image.size() > 0
+        && request.resource.data.image.size() <= 2048;
+      allow delete: if isAdmin();
+    }
+
+    match /orders/{orderId} {
+      allow create: if request.auth == null
+        && request.resource.data.keys().hasAll([
+          'customerName', 'email', 'phone', 'productName',
+          'facebookName', 'paymentMethod', 'fulfillment', 'deliveryAddress',
+          'deliveryFeeStatus', 'total', 'image', 'timestamp', 'date'
+        ])
+        && request.resource.data.keys().hasOnly([
+          'customerName', 'email', 'phone', 'productName',
+          'facebookName', 'paymentMethod', 'fulfillment', 'deliveryAddress',
+          'deliveryFeeStatus', 'total', 'image', 'timestamp', 'date'
+        ])
+        && request.resource.data.customerName is string
+        && request.resource.data.customerName.size() > 0
+        && request.resource.data.customerName.size() <= 120
+        && request.resource.data.email is string
+        && request.resource.data.email.size() <= 254
+        && request.resource.data.phone is string
+        && request.resource.data.phone.size() <= 16
+        && request.resource.data.facebookName is string
+        && request.resource.data.facebookName.size() > 0
+        && request.resource.data.facebookName.size() <= 120
+        && request.resource.data.paymentMethod in ['Cash', 'GCash']
+        && request.resource.data.fulfillment in ['Pickup', 'Delivery']
+        && request.resource.data.deliveryAddress is string
+        && request.resource.data.deliveryAddress.size() <= 500
+        && request.resource.data.deliveryFeeStatus in ['No delivery fee', 'Quote required']
+        && (
+          (request.resource.data.fulfillment == 'Pickup'
+            && request.resource.data.deliveryAddress == ''
+            && request.resource.data.deliveryFeeStatus == 'No delivery fee')
+          || (request.resource.data.fulfillment == 'Delivery'
+            && request.resource.data.deliveryAddress.size() > 0
+            && request.resource.data.deliveryFeeStatus == 'Quote required')
+        )
+        && request.resource.data.productName is string
+        && request.resource.data.productName.size() <= 120
+        && (request.resource.data.total is int || request.resource.data.total is float)
+        && request.resource.data.total >= 0
+        && request.resource.data.image is string
+        && request.resource.data.image.size() <= 2048
+        && request.resource.data.timestamp == request.time
+        && request.resource.data.date is string;
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /customRequests/{requestId} {
+      allow create: if request.auth == null
+        && request.resource.data.keys().hasAll([
+          'name', 'email', 'phone', 'facebookName', 'paymentMethod', 'fulfillment',
+          'deliveryAddress', 'deliveryFeeStatus', 'color', 'selectedFlowers',
+          'details', 'status', 'timestamp', 'date'
+        ])
+        && request.resource.data.keys().hasOnly([
+          'name', 'email', 'phone', 'facebookName', 'paymentMethod', 'fulfillment',
+          'deliveryAddress', 'deliveryFeeStatus', 'color', 'selectedFlowers',
+          'details', 'status', 'timestamp', 'date'
+        ])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.name.size() <= 120
+        && request.resource.data.email is string
+        && request.resource.data.email.size() > 0
+        && request.resource.data.email.size() <= 254
+        && request.resource.data.phone is string
+        && request.resource.data.phone.size() <= 16
+        && request.resource.data.facebookName is string
+        && request.resource.data.facebookName.size() > 0
+        && request.resource.data.facebookName.size() <= 120
+        && request.resource.data.paymentMethod in ['Cash', 'GCash']
+        && request.resource.data.fulfillment in ['Pickup', 'Delivery']
+        && request.resource.data.deliveryAddress is string
+        && request.resource.data.deliveryAddress.size() <= 500
+        && request.resource.data.deliveryFeeStatus in ['No delivery fee', 'Quote required']
+        && (
+          (request.resource.data.fulfillment == 'Pickup'
+            && request.resource.data.deliveryAddress == ''
+            && request.resource.data.deliveryFeeStatus == 'No delivery fee')
+          || (request.resource.data.fulfillment == 'Delivery'
+            && request.resource.data.deliveryAddress.size() > 0
+            && request.resource.data.deliveryFeeStatus == 'Quote required')
+        )
+        && request.resource.data.color is string
+        && request.resource.data.color in [
+          'Pastel Pink', 'Deep Red', 'Golden Yellow', 'Lavender', 'White', 'Not specified'
+        ]
+        && request.resource.data.selectedFlowers is list
+        && request.resource.data.selectedFlowers.size() > 0
+        && request.resource.data.selectedFlowers.size() <= 20
+        && request.resource.data.details is string
+        && request.resource.data.details.size() > 0
+        && request.resource.data.details.size() <= 2000
+        && request.resource.data.status == 'New'
+        && request.resource.data.timestamp == request.time
+        && request.resource.data.date is string;
+      allow read, delete: if isAdmin();
+      allow update: if isAdmin()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status'])
+        && request.resource.data.status in ['New', 'Contacted'];
+    }
+
+    match /testimonials/{testimonialId} {
+      allow read: if true;
+      allow create: if isAdmin()
+        && request.resource.data.keys().hasAll([
+          'name', 'image', 'feedback', 'consentConfirmed', 'timestamp', 'date'
+        ])
+        && request.resource.data.keys().hasOnly([
+          'name', 'image', 'feedback', 'consentConfirmed', 'timestamp', 'date'
+        ])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.name.size() <= 80
+        && request.resource.data.image is string
+        && request.resource.data.image.size() > 0
+        && request.resource.data.image.size() <= 2048
+        && request.resource.data.feedback is string
+        && request.resource.data.feedback.size() > 0
+        && request.resource.data.feedback.size() <= 1000
+        && request.resource.data.consentConfirmed == true
+        && request.resource.data.timestamp == request.time
+        && request.resource.data.date is string;
+      allow delete: if isAdmin();
+      allow update: if false;
+    }
+  }
+}
